@@ -13,9 +13,9 @@ export const tabsConfig = {
 			tabId: 'yuefa',
 			url: "/pages/Home2/Home2",
 		}, {
-			label: '阅读',
+			label: '阅读 index',
 			tabId: 'reading',
-			url: "/pages/Home1/Home1",
+			url: "/pages/index/index",
 		}, {
 			label: '听力',
 			tabId: 'listing',

@@ -1,11 +1,12 @@
 - ChatGPT
 	- 奥斯卡3
 		I have many pages.
-		All pages include the same Tabbar.
+		All pages include the same TabMenu.
 		When  a tab is clicked, its page rendered.
-		I want to create a Tabbar  in the top of page 
-		Please implement a common  TabNavigator to handle Tabbar
-		Please uni-app
+		I want to create a TabMenu  in the top of page 
+		Please implement a common  TabMenu to handle it
+		use tabsConfig as props for TabMenu
+		Please use uni-app
 		
 	- Ask2
 		-  Please implement a common  TabNavigator  
