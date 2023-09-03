@@ -19,9 +19,69 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		}, {
+			"path": "pages/automl/automl",
+			"style": {
+				"navigationBarTitleText": "零代码人工智能系统",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/MyProfile/MyProfile",
+			"style": {
+				"navigationBarTitleText": "我的信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/english/EnglishWord/EnglishWord",
+			"style": {
+				"navigationBarTitleText": "英语单词",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/english/EnglishGrammer/EnglishGrammer",
+			"style": {
+				"navigationBarTitleText": "英语语法",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/english/EnglishReading/EnglishReading",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	// copied from uni-app
+
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+				"pagePath": "pages/english/EnglishWord/EnglishWord",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-active.png",
+				"text": "ChatGPT 英语"
+			},
+			{
+				"pagePath": "pages/automl/automl",
+				"iconPath": "static/star.png",
+				"selectedIconPath": "static/star-active.png",
+				"text": "零代码人工智能系统"
+			}, {
+				"pagePath": "pages/MyProfile/MyProfile",
+				"iconPath": "static/me.png",
+				"selectedIconPath": "static/me_active.png",
+				"text": "我的信息"
+			}
+		]
+	},
 	"globalStyle": {
 		"pageOrientation": "portrait",
 		"navigationBarTitleText": "Hello uniapp",
@@ -40,6 +100,7 @@
 		}
 
 	},
-
 	"uniIdRouter": {}
 }
+
+//find . -type f -name "*.png" -exec cp {} ./png \;

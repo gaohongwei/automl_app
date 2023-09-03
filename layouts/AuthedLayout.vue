@@ -18,12 +18,12 @@
 </template>
 <script>
 	import {
-		tabsConfig
+		tabsConfig,
+		tabBarPaths
 	} from "@/appConfig/tabsConfig.js"
 
 	export default {
 		data() {
-			console.log('data tabsConfig', tabsConfig)
 			return {
 				tabBars: tabsConfig.tabBars,
 				activeTabId: tabsConfig.activeTabId
@@ -38,23 +38,27 @@
 				const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
 				const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
 
-				console.log('ontabtap activeTabId', activeTabId)
-				console.log('ontabtap activeTab', activeTab)
 				if (activeTab) {
-					console.log('ontabtap url', activeTab.url)
 					if (activeTab.url) {
-						// do not use uni.navigateTo 
-						uni.redirectTo({
-							url: activeTab.url
-						})
+						// redirectTo will skip tabBar
+						// navigateTo, navigateTo:fail webview count limit exceed
+						// switchTab only apply to pages with tabBar
+						if (tabBarPaths.includes(activeTab.url)) {
+							uni.switchTab({
+								url: activeTab.url
+							})
+						} else {
+							uni.redirectTo({
+								url: activeTab.url
+							})
+						}
 					} else {
-						console.log('activeTab', activeTab)
+						console.log('not found')
 						// uni.switchTab({
 						// 	url: activeTab.url
 						// })
 					}
 					this.activeTabId = activeTabId
-
 				} else {
 					console.log('not found')
 					return

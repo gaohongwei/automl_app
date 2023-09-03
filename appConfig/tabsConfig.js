@@ -7,24 +7,34 @@ export const tabsConfig = {
 	tabBars: [{
 			label: '单词',
 			tabId: 'words',
-			url: "/pages/Home1/Home1",
+			url: "/pages/english/EnglishWord/EnglishWord",
 		}, {
 			label: '语法',
 			tabId: 'yuefa',
-			url: "/pages/Home2/Home2",
+			url: "/pages/english/EnglishGrammer/EnglishGrammer",
 		}, {
-			label: '阅读 index',
+			label: '阅读',
 			tabId: 'reading',
-			url: "/pages/index/index",
-		}, {
-			label: '听力',
-			tabId: 'listing',
-			url: "/pages/Home2/Home2",
+			url: "/pages/english/EnglishReading/EnglishReading"
 		},
 		{
-			label: '正式使用',
+			label: 'ChatGPT 助力',
 			tabId: 'enroll'
 		},
+		// {
+		// 	label: '听力',
+		// 	tabId: 'listing',
+		// 	url: "/pages/Home2/Home2",
+		// },
+
 	],
 
 }
+
+// must match pages.json
+export const tabBarPaths = [
+	"/pages/english/EnglishWord/EnglishWord",
+	"/pages/automl/automl", ,
+	"/pages/MyProfile/MyProfile",
+
+]
