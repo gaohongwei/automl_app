@@ -21,6 +21,10 @@
     tabsConfig,
     tabBarPaths
   } from "@/appConfig/tabsConfig.js"
+  import {
+    getNewUrl,
+    getQueryParams
+  } from "./helper.js"
 
 
   export default {
@@ -45,43 +49,44 @@
         const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
         const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
 
-        // const pages = getCurrentPages();
-        const pageUrl = "getCurrentPages()";
-        const queryParams = {}
-        console.log('pageUrl', pageUrl)
-        // console.log('pages', pages)
-        console.log('ontabtap activeTabId:', activeTabId)
 
-        console.log('queryParams', queryParams)
-        if (activeTab) {
-          if (activeTab.url) {
-            // redirectTo will skip tabBar
-            // navigateTo, navigateTo:fail webview count limit exceed
-            // switchTab only apply to pages with tabBar
-            if (tabBarPaths.includes(activeTab.url)) {
-              uni.switchTab({
-                url: activeTab.url
-              })
-            } else {
-              uni.redirectTo({
-                url: activeTab.url
-              })
-            }
-          } else {
-            const newParams = {
-              ...queryParams,
-              tab1: activeTabId
-            }
-            const newUrl = "getNewUrl(pageUrl, newParams)"
-            console.log('newUrl', newUrl)
-          }
-          this.activeTabId = activeTabId
-        } else {
+        const pages = getCurrentPages();
+        const pageUrl = (pages[pages.length - 1]).route;
+        // const pageUrl = window.location.href
+        const queryParams = getQueryParams(pageUrl)
+
+        if (!activeTab) {
           console.log('not found')
           return
         }
-      },
-    }
+        if (activeTab.url) {
+          // redirectTo will skip tabBar
+          // navigateTo, navigateTo:fail webview count limit exceed
+          // switchTab only apply to pages with tabBar
+          if (tabBarPaths.includes(activeTab.url)) {
+            uni.switchTab({
+              url: activeTab.url
+            })
+          } else {
+            uni.redirectTo({
+              url: activeTab.url
+            })
+          }
+        } else {
+          const newParams = {
+            ...queryParams,
+            tab1: activeTabId
+          }
+          const newUrl = getNewUrl(pageUrl, newParams)
+          console.log('newUrl', newUrl)
+          uni.redirectTo({
+            url: newUrl
+          })
+        }
+        this.activeTabId = activeTabId
+        //
+      }
+    },
   }
 </script>
 
