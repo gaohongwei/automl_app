@@ -34,6 +34,7 @@
 
       if (['words', 'grammar', 'reading'].includes(options[key1])) {
         this.activeTab = options[key1];
+        console.log('tab2', options[key1])
       } else {
         // Handle invalid activeTab value here (e.g., set a default value)
         this.activeTab = 'grammer';

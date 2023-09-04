@@ -1,52 +1,80 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-	</view>
+  <view>
+    <view>
+      <Level1Layout />
+    </view>
+
+    {{activeTab}}
+    <English v-if="activeTab === 'english'" />
+    <Automl v-if="activeTab === 'automl'" />
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				title: 'Hello index'
-			}
-		},
-		onLoad() {
+  import Level1Layout from '@/layouts/Level1Layout.vue';
+  import English from "@/pages/english/English.vue"
+  import Automl from "@/pages/automl/automl.vue"
+  export default {
+    components: {
+      Level1Layout,
+      English,
+      Automl,
+    },
+    data() {
+      return {
+        activeTab: ''
+      }
+    },
+    onLoad(options) {
+      //const options = this.$route.query; // Assuming you're using Vue Router
+      const key1 = Object.keys(options)[0];
 
-		},
-		methods: {
-
-		}
-	}
+      if (['english', 'automl'].includes(options[key1])) {
+        this.activeTab = options[key1];
+        console.log('tab1', options[key1])
+      } else {
+        // Handle invalid activeTab value here (e.g., set a default value)
+        this.activeTab = 'english';
+      }
+    },
+  }
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+  .centered-view {
+    height: 20px;
+    position: skicky;
+    /* Position the element absolutely */
+    top: 0;
+    left: 50%;
+    /* Center horizontally at 50% of the viewport width */
+    transform: translate(-50%, -50%);
+    /* Adjust for element dimensions */
+  }
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
+  .logo {
+    height: 200rpx;
+    width: 200rpx;
+    margin-top: 200rpx;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50rpx;
+  }
 
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+  .text-area {
+    display: flex;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 36rpx;
+    color: #8f8f94;
+  }
 </style>

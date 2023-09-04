@@ -20,7 +20,7 @@
   import {
     tabsConfig,
     tabBarPaths
-  } from "@/appConfig/tabsConfig.js"
+  } from "@/appConfig/level1TabsConfig.js"
   import {
     getNewUrl,
     getQueryParams
@@ -76,7 +76,7 @@
         } else {
           const newParams = {
             ...queryParams,
-            tab2: activeTabId
+            tab1: activeTabId
           }
           const newUrl = getNewUrl(pageUrl, newParams)
           console.log('newUrl', newUrl)

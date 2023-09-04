@@ -1,13 +1,25 @@
 - ChatGPT
-	- 奥斯卡3
+	- Ask3
 		I have many pages.
-		All pages include the same TabMenu.
-		When  a tab is clicked, its page rendered.
-		I want to create a TabMenu  in the top of page 
-		Please implement a common  TabMenu to handle it
-		use tabsConfig as props for TabMenu
+    They are classified into two level of tabs.
+		All pages under the same tabs have the same tabs.
+		When  a tab of first level is clicked, its page rendered.
+		Create a common components TopTab  to handle this
 		Please use uni-app
-		
+    please do not use <component :is="activeTabId" />
+    use tabsConfig as props for TopTab    
+		export const tabsConfig = {
+		  tabLevel: 1,
+		  activeTabId: 'english',
+		  tabBars: [{
+		    label: '英语',
+		    tabId: 'english',
+		  }, {
+		    label: 'AI',
+		    tabId: 'automl',
+		  }],
+		}
+    
 	- Ask2
 		-  Please implement a common  TabNavigator  
 			each tab maps to a component.

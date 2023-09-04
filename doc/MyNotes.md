@@ -1,0 +1,2 @@
+- get url params of a page 
+  - onLoad(options)
