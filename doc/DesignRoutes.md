@@ -1,0 +1,3 @@
+- Click Tab
+  - old url, baseUrl + params
+  - newUrl: baseUrl + params
