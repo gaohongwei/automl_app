@@ -7,15 +7,15 @@ export const tabsConfig = {
 	tabBars: [{
 			label: '单词',
 			tabId: 'words',
-			url: "/pages/english/EnglishWord/EnglishWord",
+			// url: "/pages/english/EnglishWord/EnglishWord",
 		}, {
 			label: '语法',
 			tabId: 'yuefa',
-			url: "/pages/english/EnglishGrammer/EnglishGrammer",
+			// url: "/pages/english/EnglishGrammer/EnglishGrammer",
 		}, {
 			label: '阅读',
 			tabId: 'reading',
-			url: "/pages/english/EnglishReading/EnglishReading"
+			// url: "/pages/english/EnglishReading/EnglishReading"
 		},
 		{
 			label: 'ChatGPT 助力',

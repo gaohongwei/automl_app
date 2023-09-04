@@ -1,6 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/english/English",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/Home1/Home1",
 			"style": {
 				"navigationBarTitleText": "英语单词",
@@ -55,6 +62,7 @@
 			}
 
 		}
+
 	],
 	// copied from uni-app
 
