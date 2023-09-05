@@ -1,7 +1,8 @@
 <template>
   <view>
     <view>
-      <Level1Layout />
+
+      <TopLinks />
     </view>
 
     {{activeTab}}
@@ -11,14 +12,13 @@
 </template>
 
 <script>
-  import Level1Layout from '@/layouts/Level1Layout.vue';
-  import English from "@/pages/english/English.vue"
   import Automl from "@/pages/automl/automl.vue"
+  import TopLinks from "@/components/TopLinks.vue"
   export default {
     components: {
-      Level1Layout,
       English,
       Automl,
+      TopLinks
     },
     data() {
       return {

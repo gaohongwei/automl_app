@@ -22,6 +22,7 @@
     tabBarPaths
   } from "@/appConfig/tabsConfig.js"
   import {
+    getBaseUrl,
     getNewUrl,
     getQueryParams
   } from "./helper.js"
@@ -30,7 +31,7 @@
   export default {
     data() {
       return {
-        scrollInto: null,
+        scrollInto: null, // remove warning
         tabBars: tabsConfig.tabBars,
         activeTabId: tabsConfig.activeTabId,
         currentURL: "",
@@ -50,7 +51,6 @@
         const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
         const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
 
-
         const pages = getCurrentPages();
         const pageUrl = (pages[pages.length - 1]).route;
         // const pageUrl = window.location.href
@@ -60,10 +60,12 @@
           console.log('not found')
           return
         }
+
         if (activeTab.url) {
           // redirectTo will skip tabBar
           // navigateTo, navigateTo:fail webview count limit exceed
           // switchTab only apply to pages with tabBar
+          // check base url only
           if (tabBarPaths.includes(activeTab.url)) {
             uni.switchTab({
               url: activeTab.url
@@ -74,6 +76,8 @@
             })
           }
         } else {
+          console.log('here')
+          //const nextUrl = getBaseUrl(pageUrl)
           const newParams = {
             ...queryParams,
             tab2: activeTabId
@@ -84,6 +88,8 @@
             url: newUrl
           })
         }
+
+
         this.activeTabId = activeTabId
         //
       }

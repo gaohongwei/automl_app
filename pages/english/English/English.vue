@@ -10,14 +10,12 @@
 
 <script>
   import AuthedLayout from '@/layouts/AuthedLayout.vue';
-  import TopMenu from '@/layouts/TopMenu.vue';
   import EnglistWord from "@/pages/english/EnglishWord/EnglishWord.vue"
   import EnglistGrammer from "@/pages/english/EnglishGrammer/EnglishGrammer.vue"
   import EnglistReading from "@/pages/english/EnglishReading/EnglishReading.vue"
   export default {
     components: {
       AuthedLayout,
-      TopMenu,
       EnglistWord,
       EnglistGrammer,
       EnglistReading

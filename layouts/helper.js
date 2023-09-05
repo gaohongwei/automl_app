@@ -1,3 +1,7 @@
+function getBaseUrl(url) {
+  return url.split("?")[0];
+}
+
 function getQueryParams(url) {
   // Parse the URL to extract the query string
   const queryString = url.split('?')[1];
@@ -43,6 +47,7 @@ function getNewUrl(url, newParams) {
 
 
 export {
+  getBaseUrl,
   getNewUrl,
   getQueryParams
 }

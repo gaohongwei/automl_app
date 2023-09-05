@@ -27,7 +27,7 @@ export const tabsConfig = {
 
 // must match pages.json
 export const tabBarPaths = [
-  "/pages/english/EnglishWord/EnglishWord",
+  "/pages/english/English/English",
   "/pages/automl/automl", ,
   "/pages/MyProfile/MyProfile",
 

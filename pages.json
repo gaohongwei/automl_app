@@ -1,16 +1,16 @@
 {
   "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-      "path": "pages/index/index",
+      "path": "pages/english/English/English",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "英语",
+        "enablePullDownRefresh": false
       }
     },
     {
-      "path": "pages/english/English",
+      "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
+        "navigationBarTitleText": "uni-app"
       }
     },
     {
@@ -41,7 +41,8 @@
         "enablePullDownRefresh": false
       }
 
-    }, {
+    },
+    {
       "path": "pages/english/EnglishWord/EnglishWord",
       "style": {
         "navigationBarTitleText": "英语单词",
@@ -72,12 +73,13 @@
     "selectedColor": "#007AFF",
     "borderStyle": "black",
     "backgroundColor": "#F8F8F8",
-    "list": [{
-        "pagePath": "pages/english/EnglishWord/EnglishWord",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-active.png",
-        "text": "ChatGPT 英语"
-      },
+    "list": [
+      // {
+      //   "pagePath": "pages/english/English/English",
+      //   "iconPath": "static/home.png",
+      //   "selectedIconPath": "static/home-active.png",
+      //   "text": "ChatGPT 英语"
+      // },
       {
         "pagePath": "pages/automl/automl",
         "iconPath": "static/star.png",
@@ -91,6 +93,7 @@
       }
     ]
   },
+
   "globalStyle": {
     "pageOrientation": "portrait",
     "navigationBarTitleText": "Hello uniapp",
