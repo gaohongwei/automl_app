@@ -39,11 +39,12 @@
       }
 
     },
-    mounted(options) {
-      console.log('mounted', options);
-    },
+    // mounted(options) {
+    //   console.log('mounted', options);
+    // },
     created(options) {
-      console.log('created', options);
+      const pageUrlFromParent = this.$root.pageUrl;
+      console.log('created', pageUrlFromParent);
     },
     methods: {
 

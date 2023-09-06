@@ -5,12 +5,20 @@ export const tabsConfig = {
   tabLevel: 1,
   activeTabId: 'english',
   tabBars: [{
-    label: '英语',
-    tabId: 'english',
-  }, {
-    label: 'AI',
-    tabId: 'automl',
-  }],
+      label: '英语',
+      tabId: "english",
+      url: "/pages/english/English"
+    }, {
+      label: '企业人工智能',
+      tabId: 'automl',
+      url: "/pages/automl/automl"
+    },
+    {
+      label: '我的',
+      tabId: 'myInfo',
+      url: "/pages/automl/automl"
+    },
+  ],
 }
 
 // must match pages.json

@@ -1,3 +1,21 @@
+- Level1
+  - English => /pages/English
+  - Automl => /pages/Automl
+  - My -> /pages/My
+  - 无Tab参数
+- Level2， /pages/English
+  - include  a Tab
+  - click tab=> new uel=> navigateTo
+  - onLoad
+    - parse params
+    - render according to params
 - Click Tab
   - old url, baseUrl + params
   - newUrl: baseUrl + params
+- First page, index
+  - <Level1Tab />
+  - <English />
+  - tab1="automl" => redirectTo automlPage
+  - tab1="english" => redirectTo English
+  - Both page includes <Level1Tab />
+

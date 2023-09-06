@@ -1,4 +1,8 @@
 - ChatGPT
+  - ask 
+    有没有办法让底部tabBar出现所有页面？
+    为什么？因为它是一级导航吗。
+    好像不行，什么别的思路比较合理呢？
 	- Ask3
 		I have many pages.
     They are classified into two level of tabs.

@@ -1,3 +1,18 @@
+// redirectTo will skip tabBar
+// navigateTo, navigateTo:fail webview count limit exceed
+// switchTab only apply to pages with tabBar
+function gotoUrl(url, tabBarPaths = []) {
+  if (tabBarPaths.includes(url)) {
+    uni.switchTab({
+      url
+    })
+  } else {
+    uni.redirectTo({
+      url
+    })
+  }
+}
+
 function getBaseUrl(url) {
   return url.split("?")[0];
 }
@@ -45,8 +60,8 @@ function getNewUrl(url, newParams) {
   return newUrl;
 }
 
-
 export {
+  gotoUrl,
   getBaseUrl,
   getNewUrl,
   getQueryParams

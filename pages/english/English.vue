@@ -1,6 +1,6 @@
 <template>
   <view>
-    <AuthedLayout />
+    <Level2Tab />
     {{activeTab}}
     <EnglistWord v-if="activeTab === 'words'" />
     <EnglistGrammer v-if="activeTab === 'grammer'" />
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-  import AuthedLayout from '@/layouts/AuthedLayout.vue';
+  import Level2Tab from '@/layouts/Level2Tab.vue';
   import EnglistWord from "@/pages/english/EnglishWord/EnglishWord.vue"
   import EnglistGrammer from "@/pages/english/EnglishGrammer/EnglishGrammer.vue"
   import EnglistReading from "@/pages/english/EnglishReading/EnglishReading.vue"
   export default {
     components: {
-      AuthedLayout,
+      Level2Tab,
       EnglistWord,
       EnglistGrammer,
       EnglistReading
@@ -35,7 +35,7 @@
         console.log('tab2', options[key1])
       } else {
         // Handle invalid activeTab value here (e.g., set a default value)
-        this.activeTab = 'grammer';
+        this.activeTab = 'words';
       }
     },
   };

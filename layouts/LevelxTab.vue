@@ -32,6 +32,7 @@
     data() {
       return {
         scrollInto: null, // remove warning
+        tabLevel: tabsConfig.tabLevel,
         tabBars: tabsConfig.tabBars,
         activeTabId: tabsConfig.activeTabId,
         currentURL: "",
@@ -39,11 +40,12 @@
       }
 
     },
-    mounted(options) {
-      console.log('mounted', options);
-    },
+    // mounted(options) {
+    //   console.log('mounted', options);
+    // },
     created(options) {
-      console.log('created', options);
+      const pageUrlFromParent = this.$root.pageUrl;
+      console.log('created', pageUrlFromParent);
     },
     methods: {
 
@@ -51,16 +53,18 @@
         const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
         const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
 
+        if (!activeTab) {
+          console.log('not found')
+          return
+        }
+
         const pages = getCurrentPages();
         const pageUrl = (pages[pages.length - 1]).route;
         // const pageUrl = window.location.href
         const queryParams = getQueryParams(pageUrl)
         console.log('pageUrl', pageUrl)
         console.log('queryParams', queryParams)
-        if (!activeTab) {
-          console.log('not found')
-          return
-        }
+
 
         if (activeTab.url) {
           // redirectTo will skip tabBar
