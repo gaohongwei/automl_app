@@ -101,9 +101,9 @@
 
 <style lang='scss'>
   .tab-menu {
-    z-index: 999;
+    z-index: 998;
     position: sticky;
-    top: 0;
+    top: 80rpx; // the height of level1
     left: 0;
     height: 80rpx;
 

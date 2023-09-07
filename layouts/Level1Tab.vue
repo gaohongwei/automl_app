@@ -13,6 +13,12 @@
 </template>
 <style lang='scss'>
   .tab-menu {
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 80rpx;
+
     .line-h {
       height: 1rpx;
       background-color: red;
