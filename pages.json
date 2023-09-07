@@ -13,26 +13,19 @@
       }
     },
     {
-      "path": "pages/english/English",
-      "style": {
-        "navigationBarTitleText": "英语",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
       "path": "pages/automl/automl",
       "style": {
         "navigationBarTitleText": "零代码人工智能系统",
         "enablePullDownRefresh": false
       }
 
-    }, {
-      "path": "pages/MyProfile/MyProfile",
+    },
+    {
+      "path": "pages/english/English",
       "style": {
-        "navigationBarTitleText": "我的信息",
+        "navigationBarTitleText": "英语",
         "enablePullDownRefresh": false
       }
-
     },
     {
       "path": "pages/english/EnglishWord/EnglishWord",
@@ -50,6 +43,13 @@
 
     }, {
       "path": "pages/english/EnglishReading/EnglishReading",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/MyProfile/MyProfile",
       "style": {
         "navigationBarTitleText": "",
         "enablePullDownRefresh": false

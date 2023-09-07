@@ -1,20 +1,25 @@
 <template>
-	<view>
-		Automl Introductio
-	</view>
+  <view>
+    <Level1Tab />
+    Automl Introductio
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
+  import Level1Tab from '@/layouts/Level1Tab.vue';
+  export default {
+    components: {
+      Level1Tab,
+    },
+    data() {
+      return {
 
-			}
-		},
-		methods: {
+      }
+    },
+    methods: {
 
-		}
-	}
+    }
+  }
 </script>
 
 <style>

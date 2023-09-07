@@ -10,16 +10,16 @@
 
 <script>
   import Level1Tab from '@/layouts/Level1Tab.vue';
-  import Automl from "@/pages/automl/automl.vue"
-  import English from "@/pages/english/English.vue"
-  import TopLinks from "@/components/TopLinks.vue"
+  // import Automl from "@/pages/automl/automl.vue"
+  // import English from "@/pages/english/English.vue"
+  // import TopLinks from "@/components/TopLinks.vue"
 
   export default {
     components: {
       Level1Tab,
-      English,
-      Automl,
-      TopLinks
+      // English,
+      // Automl,
+      // TopLinks
     },
     data() {
       return {

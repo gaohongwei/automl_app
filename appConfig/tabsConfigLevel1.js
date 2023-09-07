@@ -16,7 +16,7 @@ export const tabsConfig = {
     {
       label: '我的',
       tabId: 'myInfo',
-      url: "/pages/automl/automl"
+      url: "/pages/MyProfile/MyProfile",
     },
   ],
 }

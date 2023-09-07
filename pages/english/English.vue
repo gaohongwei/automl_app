@@ -1,5 +1,6 @@
 <template>
   <view>
+    <Level1Tab />
     <Level2Tab />
     {{activeTab}}
     <EnglistWord v-if="activeTab === 'words'" />
@@ -9,12 +10,14 @@
 </template>
 
 <script>
+  import Level1Tab from '@/layouts/Level1Tab.vue';
   import Level2Tab from '@/layouts/Level2Tab.vue';
   import EnglistWord from "@/pages/english/EnglishWord/EnglishWord.vue"
   import EnglistGrammer from "@/pages/english/EnglishGrammer/EnglishGrammer.vue"
   import EnglistReading from "@/pages/english/EnglishReading/EnglishReading.vue"
   export default {
     components: {
+      Level1Tab,
       Level2Tab,
       EnglistWord,
       EnglistGrammer,
