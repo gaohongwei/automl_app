@@ -10,7 +10,6 @@
 
 <script>
   import Level1Tab from '@/layouts/Level1Tab.vue';
-  import Level2Tab from '@/layouts/Level2Tab.vue';
   import LevelxTab from '@/layouts/LevelxTab.vue';
   import EnglistWord from "@/pages/english/EnglishWord/EnglishWord.vue"
   import EnglistGrammer from "@/pages/english/EnglishGrammer/EnglishGrammer.vue"
@@ -24,7 +23,6 @@
   export default {
     components: {
       Level1Tab,
-      Level2Tab,
       LevelxTab,
       EnglistWord,
       EnglistGrammer,

@@ -7,10 +7,4 @@
 </template>
 
 <script>
-  import AuthedLayout from '@/layouts/AuthedLayout.vue';
-  export default {
-    components: {
-      AuthedLayout
-    },
-  };
 </script>
