@@ -64,11 +64,14 @@
 
   console.log('tabsConfig', tabsConfig)
   export default {
+    props: {
+      activeTab: String
+    },
     data() {
       return {
         scrollInto: null,
         tabBars: tabsConfig.tabBars,
-        activeTabId: tabsConfig.activeTabId,
+        activeTabId: this.activeTab,
         currentURL: "",
         queryParams: {}
       }

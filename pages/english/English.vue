@@ -1,6 +1,6 @@
 <template>
   <view>
-    <Level1Tab />
+    <Level1Tab activeTab="english" />
     <LevelxTab :tabsConfig="tabsConfigEnglish" :activeTab="activeTab" />
     <EnglistWord v-if="activeTab === 'words'" />
     <EnglistGrammer v-if="activeTab === 'grammer'" />

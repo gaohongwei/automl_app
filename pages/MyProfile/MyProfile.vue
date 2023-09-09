@@ -1,6 +1,6 @@
 <template>
   <view>
-    <Level1Tab />
+    <Level1Tab activeTab="myInfo" />
     MyProfile
   </view>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <Level1Tab />
+    <Level1Tab activeTab="automl" />
     Automl Introductio
   </view>
 </template>
