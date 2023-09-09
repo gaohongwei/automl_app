@@ -8,11 +8,9 @@
 
 <script>
   import AuthedLayout from '@/layouts/AuthedLayout.vue';
-  import TopMenu from '@/layouts/TopMenu.vue';
   export default {
     components: {
-      AuthedLayout,
-      TopMenu
+      AuthedLayout
     },
   };
 </script>

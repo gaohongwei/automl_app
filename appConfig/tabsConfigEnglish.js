@@ -10,7 +10,7 @@ export const tabsConfig = {
       // url: "/pages/english/EnglishWord/EnglishWord",
     }, {
       label: '语法',
-      tabId: 'yuefa',
+      tabId: 'grammer',
       // url: "/pages/english/EnglishGrammer/EnglishGrammer",
     }, {
       label: '阅读',

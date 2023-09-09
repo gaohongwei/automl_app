@@ -10,9 +10,10 @@
             :class="tab.tabId==activeTabId ? 'uni-tab-item-title-active' : ''">{{tab.label}}</text>
         </view>
       </scroll-view>
+
       <view class="line-h"></view>
     </view>
-
+    {{activeTabId}}
   </view>
 
 </template>
@@ -97,7 +98,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    height: 80rpx;
+    height: 160rpx;
 
     .tabs {
       display: flex;
@@ -106,7 +107,7 @@
       background-color: #ffffff;
       /* same height as title */
       /* #ifndef APP-PLUS */
-      height: 80rpx;
+      /*      height: 80rpx; */
       /* #endif */
 
 
@@ -115,7 +116,7 @@
         /* #ifdef H5 */
         width: 100%;
         /* #endif */
-        height: 80rpx;
+        /*        height: 80rpx; */
         flex-direction: row;
         /* #ifndef APP-PLUS */
         white-space: nowrap;
@@ -143,7 +144,7 @@
       .uni-tab-item-title {
         color: #555;
         font-size: 30rpx;
-        height: 80rpx;
+        /*        height: 80rpx; */
         line-height: 80rpx;
         flex-wrap: nowrap;
         /* #ifndef APP-PLUS */
@@ -175,7 +176,3 @@
     }
   }
 </style>
-
-如何读取当前页面的路径呢,query params?
-再更改params，生成新的路径呢？
-希望在通用组件中处理这些逻辑。

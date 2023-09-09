@@ -13,7 +13,6 @@
 </template>
 <style lang='scss'>
   .tab-menu {
-    z-index: 999;
     position: sticky;
     top: 0;
     left: 0;
@@ -63,6 +62,7 @@
   } from "./helper.js"
 
 
+  console.log('tabsConfig', tabsConfig)
   export default {
     data() {
       return {
@@ -96,24 +96,14 @@
           console.log('not found')
           return
         }
+        console.log('activeTabId', activeTabId)
+        this.activeTabId = activeTabId
         if (activeTab.url) {
-          console.log('next url', activeTab.url)
           gotoUrl(activeTab.url)
-
         } else {
           console.log('no Url')
-          // const newParams = {
-          //   ...queryParams,
-          //   tab1: activeTabId
-          // }
-          // const newUrl = getNewUrl(pageUrl, newParams)
-          // console.log('newUrl', newUrl)
-          // uni.redirectTo({
-          //   url: newUrl
         }
 
-        this.activeTabId = activeTabId
-        //
       }
     },
   }

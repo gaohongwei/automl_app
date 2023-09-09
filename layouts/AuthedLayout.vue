@@ -20,9 +20,9 @@
   import {
     tabsConfig,
     tabBarPaths
-  } from "@/appConfig/tabsConfig.js"
+  } from "@/appConfig/tabsConfigEnglish.js"
   import {
-    getBaseUrl,
+
     getNewUrl,
     getQueryParams
   } from "./helper.js"

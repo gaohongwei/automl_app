@@ -16,99 +16,11 @@
   </view>
 
 </template>
-<script>
-  import {
-    tabsConfig,
-    tabBarPaths
-  } from "@/appConfig/tabsConfig.js"
-  import {
-    getBaseUrl,
-    getNewUrl,
-    getQueryParams
-  } from "./helper.js"
-
-
-  export default {
-    data() {
-      return {
-        scrollInto: null, // remove warning
-        tabLevel: tabsConfig.tabLevel,
-        tabBars: tabsConfig.tabBars,
-        activeTabId: tabsConfig.activeTabId,
-        currentURL: "",
-        queryParams: {}
-      }
-
-    },
-    // mounted(options) {
-    //   console.log('mounted', options);
-    // },
-    created(options) {
-      const pageUrlFromParent = this.$root.pageUrl;
-      console.log('created', pageUrlFromParent);
-    },
-    methods: {
-
-      ontabtap(e) {
-        const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
-        const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
-
-        if (!activeTab) {
-          console.log('not found')
-          return
-        }
-
-        const pages = getCurrentPages();
-        const pageUrl = (pages[pages.length - 1]).route;
-        // const pageUrl = window.location.href
-        const queryParams = getQueryParams(pageUrl)
-        console.log('pageUrl', pageUrl)
-        console.log('queryParams', queryParams)
-
-
-        if (activeTab.url) {
-          // redirectTo will skip tabBar
-          // navigateTo, navigateTo:fail webview count limit exceed
-          // switchTab only apply to pages with tabBar
-          // check base url only
-          if (tabBarPaths.includes(activeTab.url)) {
-            uni.switchTab({
-              url: activeTab.url
-            })
-          } else {
-            uni.redirectTo({
-              url: activeTab.url
-            })
-          }
-        } else {
-          console.log('here')
-          //const nextUrl = getBaseUrl(pageUrl)
-          const newParams = {
-            ...queryParams,
-            tab2: activeTabId
-          }
-          const newUrl = getNewUrl(pageUrl, newParams)
-          console.log('newUrl', newUrl)
-          uni.redirectTo({
-            url: newUrl
-          })
-        }
-
-
-        this.activeTabId = activeTabId
-        //
-      }
-    },
-  }
-</script>
-
 <style lang='scss'>
   .tab-menu {
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 80rpx;
+    position: fixed;
+    top: 80rpx;
+    /*    top: 160rpx; // the height of level1 */
 
     .tabs {
       display: flex;
@@ -153,7 +65,7 @@
 
       .uni-tab-item-title {
         color: #555;
-        font-size: 30rpx;
+        font-size: 35rpx;
         height: 80rpx;
         line-height: 80rpx;
         flex-wrap: nowrap;
@@ -186,7 +98,80 @@
     }
   }
 </style>
+<script>
+  import {
+    gotoUrl,
+    getNewUrl,
+    getQueryParams
+  } from "./helper.js"
 
-如何读取当前页面的路径呢,query params?
-再更改params，生成新的路径呢？
-希望在通用组件中处理这些逻辑。
+
+  export default {
+    props: {
+      // tabsConfig does not work
+      tabsConfig: Object,
+      activeTab: String
+    },
+    data() {
+      return {
+        scrollInto: null, // remove warning
+        tabBars: this.tabsConfig.tabBars,
+        activeTabId: this.activeTab,
+
+      }
+    },
+    watch: {
+      activeTab(newVal, oldVal) {
+        // This watcher will be called when the prop initialCount changes
+        console.log('New initialCount:', newVal);
+        console.log('Old initialCount:', oldVal);
+        this.activeTabId = newVal
+      },
+    },
+    // created() {
+    //   this.activeTabId = this.tabsConfig.activeTabId
+    //   this.tabBars = this.tabsConfig.tabBars
+    // },
+    methods: {
+
+      ontabtap(e) {
+        // console.log('this.tabsConfig', this.tabsConfig)
+        const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
+        const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
+
+        const pages = getCurrentPages();
+        const pageUrl = (pages[pages.length - 1]).route;
+        // const pageUrl = window.location.href
+        const queryParams = getQueryParams(pageUrl)
+        console.log('pageUrl', pageUrl)
+        console.log('queryParams', queryParams)
+        if (!activeTab) {
+          console.log('not found')
+          return
+        }
+
+        if (activeTab.url) {
+          // redirectTo will skip tabBar
+          // navigateTo, navigateTo:fail webview count limit exceed
+          // switchTab only apply to pages with tabBar
+          // check base url only
+          gotoUrl(activeTab.url)
+        } else {
+          console.log('here')
+          //const nextUrl = getBaseUrl(pageUrl)
+          const newParams = {
+            ...queryParams,
+            tab2: activeTabId
+          }
+          const newUrl = getNewUrl(pageUrl, newParams)
+          console.log('newUrl', newUrl)
+          gotoUrl(newUrl)
+        }
+
+
+        this.activeTabId = activeTabId
+        //
+      }
+    },
+  }
+</script>

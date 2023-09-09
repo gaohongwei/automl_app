@@ -17,11 +17,11 @@
 
 </template>
 <script>
+  // import {
+  //   tabsConfig,
+  // } from "@/appConfig/tabsConfig.js"
   import {
-    tabsConfig,
-    tabBarPaths
-  } from "@/appConfig/tabsConfig.js"
-  import {
+    gotoUrl,
     getBaseUrl,
     getNewUrl,
     getQueryParams
@@ -29,6 +29,9 @@
 
 
   export default {
+    props: {
+      tabsConfig
+    },
     data() {
       return {
         scrollInto: null, // remove warning
@@ -68,15 +71,7 @@
           // navigateTo, navigateTo:fail webview count limit exceed
           // switchTab only apply to pages with tabBar
           // check base url only
-          if (tabBarPaths.includes(activeTab.url)) {
-            uni.switchTab({
-              url: activeTab.url
-            })
-          } else {
-            uni.redirectTo({
-              url: activeTab.url
-            })
-          }
+          gotoUrl(activeTab.url)
         } else {
           console.log('here')
           //const nextUrl = getBaseUrl(pageUrl)
@@ -86,9 +81,7 @@
           }
           const newUrl = getNewUrl(pageUrl, newParams)
           console.log('newUrl', newUrl)
-          uni.redirectTo({
-            url: newUrl
-          })
+          gotoUrl(newUrl)
         }
 
 
@@ -150,7 +143,7 @@
 
       .uni-tab-item-title {
         color: #555;
-        font-size: 30rpx;
+        font-size: 35rpx;
         height: 80rpx;
         line-height: 80rpx;
         flex-wrap: nowrap;
@@ -183,7 +176,3 @@
     }
   }
 </style>
-
-如何读取当前页面的路径呢,query params?
-再更改params，生成新的路径呢？
-希望在通用组件中处理这些逻辑。
