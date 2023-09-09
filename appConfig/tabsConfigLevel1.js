@@ -2,7 +2,6 @@
 // baseUrl can be retrieved from current page
 // tabLevel=1,2,3
 export const tabsConfig = {
-  tabLevel: 1,
   activeTabId: 'english',
   tabBars: [{
       label: '英语',

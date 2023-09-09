@@ -1,9 +1,8 @@
-<!-- copied from pages/template/tabbar/tabbar.nvue -->
+<!-- copied uni-app from pages/template/tabbar/tabbar.nvue -->
 <template>
-  <view class="tab-menu">
+  <view :class="levelClass" style="{ background-color: aqua }">
     <view class="tabs">
-      <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false"
-        :scroll-into-view="scrollInto">
+      <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
         <view v-for="tab in tabBars" :key="tab.tabId" class="uni-tab-item" :id="tab.tabId" :data-active="tab.tabId"
           @click="ontabtap">
           <text class="uni-tab-item-title"
@@ -14,13 +13,95 @@
     </view>
 
   </view>
-
 </template>
+
+<script>
+  import {
+    gotoUrl,
+    getNewUrl,
+    getQueryParams
+  } from "./helper.js"
+
+  export default {
+    props: {
+      tabsConfig: Object,
+      activeTab: String,
+      tabLevel: Number
+    },
+    data() {
+      return {
+        tabBars: this.tabsConfig.tabBars,
+        activeTabId: this.activeTab,
+        tabLevel: this.tabLevel
+      }
+    },
+    created() {
+      this.levelClass = `tab-menu level${this.tabLevel}`
+    },
+    watch: {
+      activeTab(newVal, oldVal) {
+        // This watcher will be called when the prop initialCount changes
+        this.activeTabId = newVal
+      },
+    },
+    methods: {
+      ontabtap(e) {
+        // console.log('this.tabsConfig', this.tabsConfig)
+        const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
+        const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
+
+        const pages = getCurrentPages();
+        const pageUrl = (pages[pages.length - 1]).route;
+        // const pageUrl = window.location.href
+        const queryParams = getQueryParams(pageUrl)
+        console.log('pageUrl', pageUrl)
+        console.log('queryParams', queryParams)
+        if (!activeTab) {
+          console.log('not found')
+          return
+        }
+
+        if (activeTab.url) {
+          gotoUrl(activeTab.url)
+        } else {
+          console.log('here')
+          const newParams = {
+            ...queryParams,
+            tab2: activeTabId
+          }
+          const newUrl = getNewUrl(pageUrl, newParams)
+          console.log('newUrl', newUrl)
+          gotoUrl(newUrl)
+        }
+        this.activeTabId = activeTabId
+      }
+    },
+  }
+</script>
 <style lang='scss'>
-  .tab-menu {
-    position: fixed;
+  .levle1 {
+    top: 0;
+    z-index: 999;
+    font-size: 90rpx;
+    background-color: #555;
+  }
+
+  .levle2 {
     top: 80rpx;
-    /*    top: 160rpx; // the height of level1 */
+    z-index: 998;
+    font-size: 80rpx;
+    background-color: #666;
+  }
+
+  .levle3 {
+    top: 160rpx;
+    z-index: 997;
+    font-size: 45rpx;
+    background-color: #777;
+  }
+
+  .tab-menu {
+    position: sticky;
 
     .tabs {
       display: flex;
@@ -65,7 +146,7 @@
 
       .uni-tab-item-title {
         color: #555;
-        font-size: 35rpx;
+        /*        font-size: 35rpx; */
         height: 80rpx;
         line-height: 80rpx;
         flex-wrap: nowrap;
@@ -98,80 +179,3 @@
     }
   }
 </style>
-<script>
-  import {
-    gotoUrl,
-    getNewUrl,
-    getQueryParams
-  } from "./helper.js"
-
-
-  export default {
-    props: {
-      // tabsConfig does not work
-      tabsConfig: Object,
-      activeTab: String
-    },
-    data() {
-      return {
-        scrollInto: null, // remove warning
-        tabBars: this.tabsConfig.tabBars,
-        activeTabId: this.activeTab,
-
-      }
-    },
-    watch: {
-      activeTab(newVal, oldVal) {
-        // This watcher will be called when the prop initialCount changes
-        console.log('New initialCount:', newVal);
-        console.log('Old initialCount:', oldVal);
-        this.activeTabId = newVal
-      },
-    },
-    // created() {
-    //   this.activeTabId = this.tabsConfig.activeTabId
-    //   this.tabBars = this.tabsConfig.tabBars
-    // },
-    methods: {
-
-      ontabtap(e) {
-        // console.log('this.tabsConfig', this.tabsConfig)
-        const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
-        const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
-
-        const pages = getCurrentPages();
-        const pageUrl = (pages[pages.length - 1]).route;
-        // const pageUrl = window.location.href
-        const queryParams = getQueryParams(pageUrl)
-        console.log('pageUrl', pageUrl)
-        console.log('queryParams', queryParams)
-        if (!activeTab) {
-          console.log('not found')
-          return
-        }
-
-        if (activeTab.url) {
-          // redirectTo will skip tabBar
-          // navigateTo, navigateTo:fail webview count limit exceed
-          // switchTab only apply to pages with tabBar
-          // check base url only
-          gotoUrl(activeTab.url)
-        } else {
-          console.log('here')
-          //const nextUrl = getBaseUrl(pageUrl)
-          const newParams = {
-            ...queryParams,
-            tab2: activeTabId
-          }
-          const newUrl = getNewUrl(pageUrl, newParams)
-          console.log('newUrl', newUrl)
-          gotoUrl(newUrl)
-        }
-
-
-        this.activeTabId = activeTabId
-        //
-      }
-    },
-  }
-</script>

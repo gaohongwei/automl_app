@@ -1,7 +1,7 @@
 <template>
   <view>
     <Level1Tab activeTab="english" />
-    <LevelxTab :tabsConfig="tabsConfigEnglish" :activeTab="activeTab" />
+    <LevelxTab :tabsConfig="tabsConfigEnglish" :activeTab="activeTab" :tabLevel="2" />
     <EnglistWord v-if="activeTab === 'words'" />
     <EnglistGrammer v-if="activeTab === 'grammer'" />
     <EnglistReading v-if="activeTab === 'reading'" />
