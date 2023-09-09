@@ -1,17 +1,16 @@
 <!-- copied uni-app from pages/template/tabbar/tabbar.nvue -->
 <template>
-  <view :class="levelClass" style="{ background-color: aqua }">
+  <view :class="['tab-menu',levelClass]">
     <view class="tabs">
       <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
-        <view v-for="tab in tabBars" :key="tab.tabId" class="uni-tab-item" :id="tab.tabId" :data-active="tab.tabId"
-          @click="ontabtap">
+        <view v-for="tab in tabBars" :key="tab.tabId" :class="['uni-tab-item',itemClass]" :id="tab.tabId"
+          :data-active="tab.tabId" @click="ontabtap">
           <text class="uni-tab-item-title"
             :class="tab.tabId==activeTabId ? 'uni-tab-item-title-active' : ''">{{tab.label}}</text>
         </view>
       </scroll-view>
       <view class="line-h"></view>
     </view>
-
   </view>
 </template>
 
@@ -36,7 +35,8 @@
       }
     },
     created() {
-      this.levelClass = `tab-menu level${this.tabLevel}`
+      this.levelClass = `level${this.tabLevel}`
+      this.itemClass = `itemLevel${this.tabLevel}`
     },
     watch: {
       activeTab(newVal, oldVal) {
@@ -79,25 +79,29 @@
   }
 </script>
 <style lang='scss'>
-  .levle1 {
+  .level1 {
     top: 0;
     z-index: 999;
-    font-size: 90rpx;
-    background-color: #555;
+    font-size: 45rpx;
   }
 
-  .levle2 {
+  .level2 {
     top: 80rpx;
     z-index: 998;
-    font-size: 80rpx;
-    background-color: #666;
+    font-size: 40rpx;
   }
 
-  .levle3 {
+  .level3 {
     top: 160rpx;
     z-index: 997;
-    font-size: 45rpx;
-    background-color: #777;
+    font-size: 40rpx;
+  }
+
+  .itemLevel1,
+  .itemLevel3 {}
+
+  .itemLevel2 {
+    background-color: lightgrey;
   }
 
   .tab-menu {
