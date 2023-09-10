@@ -55,6 +55,20 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/english/WordsCheck/WordsCheck",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/english/WordsForget/WordsForget",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
     }
   ],
   // copied from uni-app
