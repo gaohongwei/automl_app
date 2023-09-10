@@ -4,23 +4,14 @@
   </view>
 </template>
 
-<script>
+<script setup>
   import {
-    tabsConfig
+    tabsConfig as _tabsConfig
   } from "@/appConfig/tabsConfigLevel1.js"
   import LevelxTab from '@/layouts/LevelxTab.vue';
 
-  export default {
-    props: {
-      activeTab: String
-    },
-    components: {
-      LevelxTab
-    },
-    data() {
-      return {
-        tabsConfig: tabsConfig
-      }
-    },
-  }
+  const props = defineProps({
+    activeTab: String
+  })
+  const tabsConfig = _tabsConfig
 </script>
