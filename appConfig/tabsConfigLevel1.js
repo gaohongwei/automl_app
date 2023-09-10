@@ -6,7 +6,7 @@ export const tabsConfig = {
   tabBars: [{
       label: '英语',
       tabId: "english",
-      url: "/pages/english/English"
+      url: "/pages/english/EnglishWord/EnglishWord",
     }, {
       label: '企业人工智能',
       tabId: 'automl',
