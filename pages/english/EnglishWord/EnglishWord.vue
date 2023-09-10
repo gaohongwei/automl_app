@@ -2,11 +2,8 @@
   <view>
     <EnglishPage>
       <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="3" />
-      <!--      <view v-for="index in 100" :key="index">
-        <view>单词 {{ index }}</view>
-      </view> -->
       <WordsCheck v-if="activeTab === 'wordsCheck'" />
-      <WordsForget v-if="activeTab === 'wordsForget'" /> -->
+      <WordsForget v-if="activeTab === 'wordsForget'" />
     </EnglishPage>
 
   </view>

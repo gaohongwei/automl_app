@@ -1,15 +1,5 @@
 <template>
-  <view>
-    Word check
+  <view v-for="index in 100" :key="index">
+    <view>Words check {{ index }}</view>
   </view>
 </template>
-
-<script>
-  export default {
-
-  }
-</script>
-
-<style>
-
-</style>
