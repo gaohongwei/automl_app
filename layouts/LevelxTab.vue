@@ -86,13 +86,13 @@
   }
 
   .level2 {
-    top: 80rpx;
+    top: 0;
     z-index: 998;
     font-size: 40rpx;
   }
 
   .level3 {
-    top: 160rpx;
+    top: 80rpx;
     z-index: 997;
     font-size: 40rpx;
   }

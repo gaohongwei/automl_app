@@ -1,6 +1,6 @@
 <template>
   <view>
-    <Level1Tab activeTab="english" />
+    <!--    <Level1Tab activeTab="english" /> -->
     <LevelxTab :tabsConfig="tabsConfigEnglish" :activeTab="activeTab" :tabLevel="2" />
     <slot></slot>
   </view>

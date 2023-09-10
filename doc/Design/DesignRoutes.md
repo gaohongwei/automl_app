@@ -1,14 +1,26 @@
-- Level1
+- url or tab
+  - tab, easy to highlight activeTab
+  - url may miss activeTab in multiple level
+- Level0, do not use params
   - English => /pages/English
   - Automl => /pages/Automl
   - My -> /pages/My
   - 无Tab参数
-- Level2， /pages/English
+- Level1， /pages/English
+  - /pages/English?tab1=words&tab2=check
+  - /pages/English?tab1=words&tab2=forget
+  - /pages/automl
+  - /pages/my
   - include  a Tab
-  - click tab=> new uel=> navigateTo
+  - click tab
+    - new url
+    - navigateTo
   - onLoad
     - parse params
     - render according to params
+  - logic
+    - <EnglishWords v-if="activeTab === 'words'" :activeTab="activeTab2"/>
+    - 
 - Click Tab
   - old url, baseUrl + params
   - newUrl: baseUrl + params
