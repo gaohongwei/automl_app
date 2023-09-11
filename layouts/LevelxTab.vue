@@ -4,9 +4,9 @@
     <view class="tabs">
       <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
         <view v-for="tab in tabBars" :key="tab.tabId" :class="['uni-tab-item',itemClass]" :id="tab.tabId"
-          :data-active="tab.tabId" @click="ontabtap">
+          :data-active="tab.tabId" @click="ontabtap(tab)">
           <text class="uni-tab-item-title"
-            :class="tab.tabId==activeTabId ? 'uni-tab-item-title-active' : ''">{{tab.label}}</text>
+            :class="tab.tabId==activeId ? 'uni-tab-item-title-active' : ''">{{tab.label}}</text>
         </view>
       </scroll-view>
       <view class="line-h"></view>
@@ -14,70 +14,64 @@
   </view>
 </template>
 
-<script>
+<script setup>
+  import {
+    watch,
+    ref
+  } from 'vue';
   import {
     gotoUrl,
     getNewUrl,
     getQueryParams
   } from "./helper.js"
 
-  export default {
-    props: {
-      tabsConfig: Object,
-      activeTab: String,
-      tabLevel: Number
-    },
-    data() {
-      return {
-        tabBars: this.tabsConfig.tabBars,
-        activeTabId: this.activeTab,
-        tabLevel: this.tabLevel
-      }
-    },
-    created() {
-      this.levelClass = `level${this.tabLevel}`
-      this.itemClass = `itemLevel${this.tabLevel}`
-    },
-    watch: {
-      activeTab(newVal, oldVal) {
-        // This watcher will be called when the prop initialCount changes
-        this.activeTabId = newVal
-      },
-    },
-    methods: {
-      ontabtap(e) {
-        // console.log('this.tabsConfig', this.tabsConfig)
-        const activeTabId = e.target.dataset.active || e.currentTarget.dataset.active;
-        const activeTab = this.tabBars.find(tab => tab.tabId === activeTabId)
+  const props = defineProps({
+    tabsConfig: Object,
+    activeTab: String,
+    tabLevel: Number
+  })
 
-        const pages = getCurrentPages();
-        const pageUrl = (pages[pages.length - 1]).route;
-        // const pageUrl = window.location.href
-        const queryParams = getQueryParams(pageUrl)
-        console.log('pageUrl', pageUrl)
-        console.log('queryParams', queryParams)
-        if (!activeTab) {
-          console.log('not found')
-          return
-        }
+  const tabBars = props.tabsConfig.tabBars;
+  const activeTab = ref(props.activeTab); // Create a ref to store the activeTab prop
+  const activeId = activeTab?.tabId
 
-        if (activeTab.url) {
-          gotoUrl(activeTab.url)
-        } else {
-          console.log('here')
-          const newParams = {
-            ...queryParams,
-            tab2: activeTabId
-          }
-          const newUrl = getNewUrl(pageUrl, newParams)
-          console.log('newUrl', newUrl)
-          gotoUrl(newUrl)
-        }
-        this.activeTabId = activeTabId
-      }
-    },
-  }
+  const tabLevel = props.tabLevel;
+  const levelClass = `level${tabLevel}`;
+  const itemClass = `itemLevel${tabLevel}`;
+
+
+  // Watch for changes to the activeTab prop
+  // This watcher will be called when the activeTab prop changes
+
+  watch(activeId, (newVal, _oldVal) => {
+    activeId = newVal;
+  });
+
+  const ontabtap = (selectedTab) => {
+    const pages = getCurrentPages();
+    const pageUrl = pages[pages.length - 1].route;
+    const queryParams = getQueryParams(pageUrl);
+
+    if (!selectedTab) {
+      console.log('not found');
+      return;
+    }
+
+    if (selectedTab.url) {
+      gotoUrl(selectedTab.url);
+    } else {
+      const newParams = {
+        ...queryParams,
+        tab2: selectedTab.tabId
+      };
+      const newUrl = getNewUrl(pageUrl, newParams);
+      gotoUrl(newUrl);
+    }
+
+    activeId = selectedTab.tabId;
+  };
 </script>
+
 <style lang='scss'>
   .level1 {
     top: 0;
