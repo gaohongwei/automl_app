@@ -1,59 +1,52 @@
 <!-- copied uni-app from pages/template/tabbar/tabbar.nvue -->
 <template>
-  <view :class="['tab-menu',levelClass]">
+  <view :class="['tab-menu', levelClass]">
     <view class="tabs">
       <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
-        <view v-for="tab in tabBars" :key="tab.tabId" :class="['uni-tab-item',itemClass]" :id="tab.tabId"
+        <view v-for="tab in tabBars" :key="tab.tabId" :class="['uni-tab-item', itemClass]" :id="tab.tabId"
           :data-active="tab.tabId" @click="ontabtap(tab)">
           <text class="uni-tab-item-title"
-            :class="tab.tabId==activeId ? 'uni-tab-item-title-active' : ''">{{tab.label}}</text>
+            :class="tab.tabId == activeId ? 'uni-tab-item-title-active' : ''">{{ tab.label }}</text>
         </view>
       </scroll-view>
       <view class="line-h"></view>
+
     </view>
+    {{activeId}}
   </view>
 </template>
 
 <script setup>
   import {
-    watch,
     ref
   } from 'vue';
   import {
     gotoUrl,
     getNewUrl,
     getQueryParams
-  } from "./helper.js"
+  } from "@/helper/helper.js";
+
 
   const props = defineProps({
     tabsConfig: Object,
     activeTab: String,
-    tabLevel: Number
-  })
+    tabLevel: Number,
+  });
 
   const tabBars = props.tabsConfig.tabBars;
-  const activeTab = ref(props.activeTab); // Create a ref to store the activeTab prop
-  const activeId = activeTab?.tabId
+  const activeTab = props.activeTab; // Create a ref to store the activeTab prop
+  const activeId = ref(activeTab?.tabId);
+  // let activeId = "words"
+  //activeTab?.tabId;
 
   const tabLevel = props.tabLevel;
   const levelClass = `level${tabLevel}`;
   const itemClass = `itemLevel${tabLevel}`;
 
 
-  // Watch for changes to the activeTab prop
-  // This watcher will be called when the activeTab prop changes
-
-  watch(activeId, (newVal, _oldVal) => {
-    activeId = newVal;
-  });
-
   const ontabtap = (selectedTab) => {
-    const pages = getCurrentPages();
-    const pageUrl = pages[pages.length - 1].route;
-    const queryParams = getQueryParams(pageUrl);
-
     if (!selectedTab) {
-      console.log('not found');
+      console.log("not found");
       return;
     }
 
@@ -61,18 +54,16 @@
       gotoUrl(selectedTab.url);
     } else {
       const newParams = {
-        ...queryParams,
-        tab2: selectedTab.tabId
+        tab2: selectedTab.tabId,
       };
-      const newUrl = getNewUrl(pageUrl, newParams);
+      const newUrl = getNewUrl(newParams);
       gotoUrl(newUrl);
     }
-
-    activeId = selectedTab.tabId;
+    activeId.value = selectedTab.tabId;;
   };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   .level1 {
     top: 0;
     z-index: 999;
@@ -110,7 +101,6 @@
       /* #ifndef APP-PLUS */
       height: 80rpx;
       /* #endif */
-
 
       .scroll-h {
         width: 750rpx;
@@ -154,7 +144,7 @@
       }
 
       .uni-tab-item-title-active {
-        color: #007AFF;
+        color: #007aff;
       }
 
       .swiper-box {

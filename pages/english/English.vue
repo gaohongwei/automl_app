@@ -1,12 +1,11 @@
 <template>
   <view>
     <!--    <Level1Tab activeTab="english" /> -->
-    <LevelxTab :tabsConfig="tabsConfigEnglish" :activeTab="activeTab" :tabLevel="2" />
-    <slot></slot>
+    <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="2" />
   </view>
 </template>
 
-<script>
+<script setup>
   import Level1Tab from '@/layouts/Level1Tab.vue';
   import LevelxTab from '@/layouts/LevelxTab.vue';
   import {
@@ -17,23 +16,12 @@
     getFirstValue
   } from "@/helper/queryParams"
 
-  export default {
-    components: {
-      Level1Tab,
-      LevelxTab,
-      // EnglistWord,
-      // EnglistGrammer,
-      // EnglistReading
-    },
-    data() {
-      return {
-        activeTab: "",
-        tabsConfig: tabsConfigEnglish,
-        tabsConfigEnglish: tabsConfigEnglish
-      }
-    },
-    onLoad(options) {
-      this.activeTab = getFirstValue(options)
-    },
-  };
+  let activeTab = ""
+  const tabsConfig = tabsConfigEnglish
+
+  const onLoad = (options) => {
+    activeTab = options['tab2'] || 'words'
+    console.log('onLoad')
+    console.log('activeTab', activeTab)
+  }
 </script>

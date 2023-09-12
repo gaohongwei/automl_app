@@ -2,6 +2,8 @@
 // navigateTo, navigateTo:fail webview count limit exceed
 // switchTab only apply to pages with tabBar
 function gotoUrl(url, tabBarPaths = []) {
+  console.log('gotoUrl', url)
+  if (!url) return
   if (tabBarPaths.includes(url)) {
     uni.switchTab({
       url
@@ -37,10 +39,13 @@ function getQueryParams(url) {
   return params;
 }
 
-function getNewUrl(url, newParams) {
-  if (Object.keys(newParams).length < 1) return url;
+function getNewUrl(newParams) {
+  if (Object.keys(newParams).length < 1) return;
   // Parse the existing query parameters from the original URL
-  const queryParams = getQueryParams(url);
+
+  const pages = getCurrentPages();
+  const pageUrl = pages[pages.length - 1].route;
+  const queryParams = getQueryParams(pageUrl);
 
   // Add or update the query parameters with the newParams
   for (const key in newParams) {
@@ -50,7 +55,7 @@ function getNewUrl(url, newParams) {
   }
 
   // Reconstruct the URL with the updated query parameters
-  const baseUrl = url.split("?")[0];
+  const baseUrl = pageUrl.split("?")[0];
 
   const newQuery = Object.keys(queryParams)
     .map(key => `${key}=${encodeURIComponent(queryParams[key])}`)
