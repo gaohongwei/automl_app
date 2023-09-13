@@ -1,15 +1,18 @@
 <template>
   <view>
-    <!--    <Level1Tab activeTab="english" /> -->
     <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="2" />
+    <EnglishGrammer v-if="activeTab === 'grammer'" />
+    <EnglishReading v-if="activeTab === 'reading'" />
     <EnglishWord v-if="activeTab === 'words'" />
-    EnglishWord{{tab2}}
+    tab2{{tab2}}
   </view>
 </template>
 
 <script setup>
   import LevelxTab from '@/layouts/LevelxTab.vue';
   import EnglishWord from "@/pages/english/EnglishWord/EnglishWord.vue"
+  import EnglishGrammer from "@/pages/english/EnglishGrammer/EnglishGrammer.vue"
+  import EnglishReading from "@/pages/english/EnglishReading/EnglishReading.vue"
   import {
     tabsConfig as tabsConfigEnglish
   } from "@/appConfig/tabsConfigEnglish.js"
@@ -20,7 +23,7 @@
 
   const store = useQueryParamsStore();
   const {
-    tab2
+    tab2 = "words"
   } = store;
 
 

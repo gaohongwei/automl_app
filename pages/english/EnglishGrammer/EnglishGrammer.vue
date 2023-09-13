@@ -1,24 +1,14 @@
 <template>
   <view>
-    <EnglishPage>
-      <view v-for="index in 100" :key="index">
-        <view>语法 {{ index }}</view>
-      </view>
-    </EnglishPage>
+
+    <view v-for="index in 100" :key="index">
+      <view>语法 {{ index }}</view>
+    </view>
+
 
   </view>
 </template>
 
-<script>
-  import EnglishPage from "@/pages/english/English.vue"
+<script setup>
 
-  export default {
-    components: {
-      EnglishPage
-    },
-    data() {
-      return {}
-    },
-
-  };
 </script>

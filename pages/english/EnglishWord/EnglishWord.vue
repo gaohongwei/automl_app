@@ -3,6 +3,7 @@
     <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="3" />
     <WordsCheck v-if="activeTab === 'wordsCheck'" />
     <WordsForget v-if="activeTab === 'wordsForget'" />
+    tab3{{tab3}}
   </view>
 </template>
 
@@ -20,10 +21,7 @@
 
   const store = useQueryParamsStore();
   const {
-    tab3,
-    tab2
+    tab3 = 'wordsCheck'
   } = store;
   const activeTab = tab3
-  console.log('tab3', activeTab)
-  console.log('tab2', tab2)
 </script>
