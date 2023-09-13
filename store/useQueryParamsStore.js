@@ -14,10 +14,21 @@ export const useQueryParamsStore = defineStore('queryParamsStore', {
       tabLevel,
       tabValue
     }) {
-      const tabKey = `tab${tabLevel}`;
-      console.log('tabKey', tabKey)
-      console.log('tabValue', tabValue)
-      this[tabKey] = tabValue; // Corrected way to modify the states
+      switch (tabLevel) {
+        case 1:
+          this['tab1'] = tabValue
+          this['tab2'] = ""
+          this['tab3'] = ""
+          break;
+        case 2:
+          this['tab2'] = tabValue
+          this['tab3'] = ""
+          break;
+        case 3:
+          this['tab3'] = tabValue
+        default:
+          break
+      }
     },
   },
 });

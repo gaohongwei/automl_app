@@ -12,7 +12,6 @@
       <view class="line-h"></view>
 
     </view>
-    {{activeId}}
   </view>
 </template>
 
