@@ -23,9 +23,12 @@
   import {
     gotoUrl,
     getNewUrl,
-    getQueryParams
+
   } from "@/helper/helper.js";
 
+  import {
+    useQueryParamsStore
+  } from '@/store/useQueryParamsStore.js';
 
   const props = defineProps({
     tabsConfig: Object,
@@ -33,9 +36,11 @@
     tabLevel: Number,
   });
 
+  const store = useQueryParamsStore();
+
   const tabBars = props.tabsConfig.tabBars;
   const activeTab = props.activeTab; // Create a ref to store the activeTab prop
-  const activeId = ref(activeTab?.tabId);
+  const activeId = ref(activeTab)
   // let activeId = "words"
   //activeTab?.tabId;
 
@@ -59,7 +64,11 @@
       const newUrl = getNewUrl(newParams);
       gotoUrl(newUrl);
     }
-    activeId.value = selectedTab.tabId;;
+    // activeId.value = selectedTab.tabId;;
+    store.setTab({
+      tabLevel,
+      tabValue: selectedTab.tabId
+    })
   };
 </script>
 

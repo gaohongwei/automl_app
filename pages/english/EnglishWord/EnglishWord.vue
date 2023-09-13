@@ -1,10 +1,10 @@
 <template>
   <view>
-    <EnglishPage>
-      <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="3" />
-      <WordsCheck v-if="activeTab === 'wordsCheck'" />
-      <WordsForget v-if="activeTab === 'wordsForget'" />
-    </EnglishPage>
+
+    <LevelxTab :tabsConfig="tabsConfig" :activeTab="activeTab" :tabLevel="3" />
+    <WordsCheck v-if="activeTab === 'wordsCheck'" />
+    <WordsForget v-if="activeTab === 'wordsForget'" />
+
 
   </view>
 </template>

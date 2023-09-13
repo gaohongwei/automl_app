@@ -2,7 +2,7 @@
 // navigateTo, navigateTo:fail webview count limit exceed
 // switchTab only apply to pages with tabBar
 function gotoUrl(url, tabBarPaths = []) {
-  console.log('gotoUrl', url)
+  //console.log('gotoUrl', url)
   if (!url) return
   if (tabBarPaths.includes(url)) {
     uni.switchTab({
